@@ -1,0 +1,158 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-odoo-server
+  labels:
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+    app: {{ template "odoo-doodba.fullname" . }}
+    type: server
+spec:
+  replicas: {{ .Values.replicaCount }}
+  serviceName: {{ .Release.Name }}-odoo-server
+  template:
+    metadata:
+      labels:
+        app: {{ template "odoo-doodba.fullname" . }}
+        type: server
+    spec:
+    {{ if .Values.persistence.enabled }}
+      initContainers:
+      - name: volume-hack
+        image: busybox
+        command: ['sh', '-c', 'chown 1000:1000 -R /filestore;']
+        resources:
+          cpu: "50m"
+          memory: "100Mi"
+        volumeMounts:
+        - name: filestore
+          mountPath: /filestore
+    {{ end }}
+      containers:
+      - name: server
+        image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        ports:
+        - containerPort: {{ .Values.port }}
+        resources:
+          {{- toYaml .Values.resources | nindent 12 }}
+        envFrom:
+          - configMapRef:
+              name: {{ .Release.Name }}-conf
+        env:
+        - name: ADMIN_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-conf
+              key: ADMIN_PASSWORD
+        - name: PYTHONOPTIMIZE
+          value: "2"
+        - name: PGPASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-db-credentials
+              key: password
+        - name: PGUSER
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-db-credentials
+              key: username
+        - name: PGHOST
+          value: 
+            {{ if .Values.postgresql.postgresHost -}}
+              {{ .Values.postgresql.postgresHost }}
+            {{- else }}
+              {{ .Release.Name }}-postgresql
+            {{- end }}
+        tty: true
+{{ if .Values.persistence.enabled }}
+        volumeMounts:
+        - name: filestore
+          mountPath: {{ .Values.persistence.mountPath }}
+{{ end }}
+{{ if not .Values.postgresql.clusterDeployment }}
+      - name: cloudsql-proxy
+        image: gcr.io/cloudsql-docker/gce-proxy:1.11
+        command: ["/cloud_sql_proxy",
+                  "-instances={{ .Values.postgresql.instanceConnectionName }}=tcp:5432",
+                  "-credential_file=/secrets/cloudsql/credentials.json"]
+        volumeMounts:
+          - name: cloudsql-instance-credentials
+            mountPath: /secrets/cloudsql
+            readOnly: true
+{{ end }}
+{{ if or .Values.postgresql.clusterDeployment .Values.persistence.enabled}}
+      volumes:
+{{ end }}
+{{ if not .Values.postgresql.clusterDeployment }}
+      - name: cloudsql-instance-credentials
+        secret:
+          secretName: cloudsql-instance-credentials
+{{ end }}
+{{ if .Values.persistence.enabled }}
+      - name: filestore
+        persistentVolumeClaim:
+          claimName: {{ .Release.Name }}-filestore
+{{ end }}
+{{ if .Values.nodePool }}
+      nodeSelector:
+        cloud.google.com/gke-nodepool: {{ .Values.nodePool }}
+{{ end }}
+---
+{{ if .Values.smtp.enabled }}
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-smtp
+  labels:
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: {{ template "odoo-doodba.fullname" . }}
+        type: smtp-relay
+    spec:
+      containers:
+      - image: pcatinean/postfix-relay
+        imagePullPolicy: Always
+        name: {{ .Release.Name }}-smtp
+        env:
+        - name: MAILNAME
+          valueFrom:
+            configMapKeyRef:
+              name: {{ .Release.Name }}-smtp-relay
+              key: MAILNAME
+        - name: MAIL_RELAY_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: {{ .Release.Name }}-smtp-relay
+              key: MAIL_RELAY_HOST
+        - name: MAIL_RELAY_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: {{ .Release.Name }}-smtp-relay
+              key: MAIL_RELAY_PORT
+        - name: MAIL_RELAY_USER
+          valueFrom:
+            configMapKeyRef:
+              name: {{ .Release.Name }}-smtp-relay
+              key: MAIL_RELAY_USER
+        - name: MAIL_RELAY_PASS
+          valueFrom:
+            configMapKeyRef:
+              name: {{ .Release.Name }}-smtp-relay
+              key: MAIL_RELAY_PASS
+        - name: MAIL_CANONICAL_DOMAINS
+          valueFrom:
+            configMapKeyRef:
+              name: {{ .Release.Name }}-smtp-relay
+              key: MAIL_CANONICAL_DOMAINS
+        - name: MAIL_NON_CANONICAL_DEFAULT
+          valueFrom:
+            configMapKeyRef:
+              name: {{ .Release.Name }}-smtp-relay
+              key: MAIL_NON_CANONICAL_DEFAULT
+{{ end }}

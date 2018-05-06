@@ -1,0 +1,85 @@
+# Default values for odoo-chart.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+# Specify nodepool other than default for odoo server
+# nodePool: odoo-server
+
+image:
+  repository: gcr.io/pledra-1/odoo
+  tag: "11.0"
+  pullPolicy: Always
+
+https:
+  enabled: true
+  acme_email: pca@pledra.com
+
+# Values for odoo.conf file and other Odoo related configurations
+config: {
+    PROXY_MODE: "1",
+    SMTP_PORT: "25",
+    PGDATABASE: "test",
+    $ODOO_CFG_LIMIT_MEMORY_HARD: 2684354560
+    $ODOO_CFG_LIMIT_MEMORY_SOFT: 2147483648
+    $ODOO_CFG_LIMIT_REQUEST: 8192
+    $ODOO_CFG_LIMIT_TIME_CPU: 60
+    $ODOO_CFG_LIMIT_TIME_REAL: 120
+    $ODOO_CFG_LIMIT_TIME_REAL_CRON: -1
+    $ODOO_CFG_LIST_DB: 1
+    $ODOO_CFG_MAX_CRON_THREADS: 2
+    $ODOO_CFG_OSV_MEMORY_AGE_LIMIT: 1.0
+    $ODOO_CFG_OSV_MEMORY_COUNT_LIMIT: False
+    $ODOO_CFG_WORKERS: 0
+}
+
+# Store password in secret not configmap
+ADMIN_PASSWORD: admin-password
+
+port: 8069
+longpollingPort: 8072
+domainProd: prod-domain
+domainTest: test-domain
+
+# Persist data to a persistent volume
+persistence:
+  enabled: true
+  accessMode: ReadWriteOnce
+  createPvc: true
+  size: 5Gi
+  storageClass: "ssd"
+  reclaimPolicy: "Retain"
+  subPath: "filestore"
+  mountPath: /var/lib/odoo
+
+  annotations: {
+    "helm.sh/resource-policy": "keep"
+  }
+
+resources: 
+  #limits:
+  #  cpu: 1
+  #  memory: 128Mi
+  #requests:
+  #  cpu: 100m
+  #  memory: 128Mi
+
+postgresql:
+  clusterDeployment: true
+  postgresHost: localhost
+  postgresUser: "odoo"
+  postgresPassword: "u8Q^4HhTG"
+  # instanceConnectionName: "project-id:us-west1:instance-name"
+
+# Postfix smtp relay
+smtp:
+  enabled: true
+  mailName: "Smtp"
+  relayHost: "smtp.gmail.com"
+  relayPort: "587"
+  relayUser: "email"
+  relayPass: "password"
+  canonicalDomains: "prod-domain"
+  nonCanonicalDefault: "prod-domain"
+

@@ -1,0 +1,34 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-conf
+  labels:
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+data:
+{{- if .Values.config }}
+{{ toYaml .Values.config | indent 2 }}
+{{- end }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-settings
+data:
+  DOMAIN_PROD: {{ .Values.domainProd }}
+  DOMAIN_TEST: {{ .Values.domainTest }}
+{{ if .Values.smtp.enabled }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-smtp-relay
+data:
+  MAILNAME: {{ .Values.smtp.mailName }}
+  MAIL_RELAY_HOST: {{ .Values.smtp.relayHost }}
+  MAIL_RELAY_PORT: {{ .Values.smtp.relayPort | quote }}
+  MAIL_RELAY_USER: {{ .Values.smtp.relayUser }}
+  MAIL_RELAY_PASS: {{ .Values.smtp.relayPass }}
+  MAIL_CANONICAL_DOMAINS: {{ .Values.smtp.canonicalDomains }}
+  MAIL_NON_CANONICAL_DEFAULT: {{ .Values.smtp.nonCanonicalDefault }}
+{{ end }}
