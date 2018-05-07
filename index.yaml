@@ -3,9 +3,27 @@ entries:
   odoo-doodba:
   - apiVersion: v1
     appVersion: "10.0"
-    created: 2018-05-06T15:55:25.250594586+02:00
+    created: 2018-05-07T17:56:42.322476305+02:00
     description: Odoo chart for Kubernetes using Tecnativa's Docker odoo base (Doodba)
-    digest: 17bd2e56094a932de7d582cae0cadf0ac334089a30a9c6fcb2f7106e6d8b320d
+    digest: 9ffecc7f34b5a7a6e7da825547597b935552a9199272b4dea32847584966cb11
+    keywords:
+    - odoo
+    - doodba
+    maintainers:
+    - email: pca@pledra.com
+      name: Paul Catinean
+      url: http://pledra.com
+    name: odoo-doodba
+    sources:
+    - git@gitlab.pledra.com:pledra/odoo-helm-chart.git
+    urls:
+    - odoo-doodba-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v1
+    appVersion: "10.0"
+    created: 2018-05-07T17:56:42.321919459+02:00
+    description: Odoo chart for Kubernetes using Tecnativa's Docker odoo base (Doodba)
+    digest: 7509685dcf3946ca45c1c2173ddc5410dd532ef2b03b1b46c2c400177edf74dd
     keywords:
     - odoo
     - doodba
@@ -19,4 +37,4 @@ entries:
     urls:
     - odoo-doodba-0.1.1.tgz
     version: 0.1.1
-generated: 2018-05-06T15:55:25.249906772+02:00
+generated: 2018-05-07T17:56:42.321295852+02:00

@@ -2,7 +2,7 @@ apiVersion: v1
 appVersion: "10.0"
 description: Odoo chart for Kubernetes using Tecnativa's Docker odoo base (Doodba)
 name: odoo-doodba
-version: 0.1.1
+version: 0.1.2
 sources:
   - git@gitlab.pledra.com:pledra/odoo-helm-chart.git
 maintainers:

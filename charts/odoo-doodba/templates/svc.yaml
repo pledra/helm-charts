@@ -34,5 +34,5 @@ spec:
     protocol: TCP
   selector:
     app: {{ template "odoo-doodba.fullname" . }}
-    type: smtp
+    type: smtp-relay
 {{ end }}
