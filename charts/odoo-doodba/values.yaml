@@ -67,9 +67,9 @@ resources:
 
 postgresql:
   clusterDeployment: true
-  postgresHost: localhost
   postgresUser: "odoo"
   postgresPassword: "u8Q^4HhTG"
+  # postgresHost: localhost
   # instanceConnectionName: "project-id:us-west1:instance-name"
 
 # Postfix smtp relay
