@@ -12,6 +12,14 @@ image:
   tag: "11.0"
   pullPolicy: Always
 
+ingress:
+  enabled: true
+  domain: prod-domain
+  wwwRedirect: false
+  # redirectFrom:
+  #   - www.prod-domain.com
+  #   - subdomain.prod-domain.com
+
 https:
   enabled: true
   acme_email: pca@pledra.com
@@ -39,8 +47,6 @@ ADMIN_PASSWORD: admin-password
 
 port: 8069
 longpollingPort: 8072
-domainProd: prod-domain
-domainTest: test-domain
 
 # Persist data to a persistent volume
 persistence:

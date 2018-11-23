@@ -1,3 +1,4 @@
+{{ if .Values.ingress.enabled }}
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
@@ -10,13 +11,17 @@ metadata:
     kubernetes.io/ingress.class: "nginx"
     certmanager.k8s.io/issuer: letsencrypt
     certmanager.k8s.io/acme-challenge-type: "http01"
+    {{ if .Values.ingress.wwwRedirect }}
+    nginx.ingress.kubernetes.io/from-to-www-redirect: "true"
+    {{ end }}
+
 spec:
   tls:
   - hosts:
-    - {{ .Values.domainProd }}
+    - {{ .Values.ingress.domain }}
     secretName: {{ .Release.Name }}
   rules:
-  - host: {{ .Values.domainProd }}
+  - host: {{ .Values.ingress.domain }}
     http:
       paths:
       - path: /
@@ -27,3 +32,4 @@ spec:
         backend:
           serviceName: "{{ .Release.Name }}-odoo-server"
           servicePort: {{ .Values.longpollingPort }}
+{{ end }}  
