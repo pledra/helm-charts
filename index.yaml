@@ -1,7 +1,7 @@
 apiVersion: v1
 entries:
   gitlab:
-  - created: 2018-12-02T17:47:20.466207737+01:00
+  - created: 2018-12-02T23:25:52.328893482+01:00
     description: GitLab Community Edition
     digest: 7f0bc8eafff4ad825ac7a6ca35bb663eb75210bf5f9712d6177e9459f909bb0f
     home: https://about.gitlab.com
@@ -26,9 +26,9 @@ entries:
   odoo-doodba:
   - apiVersion: v1
     appVersion: 1.0.0
-    created: 2018-12-02T17:47:20.466758182+01:00
+    created: 2018-12-02T23:25:52.329480887+01:00
     description: Odoo chart for Kubernetes using Tecnativa's Docker odoo base (Doodba)
-    digest: dc9f861d9d81620207ac658a9e72919435277b842c8c0be7743bd94969c86bb7
+    digest: acb1f1948d8252f1bdb33e3e9680452a444f7a20501edaa27257e85748e76cc3
     icon: https://odoocdn.com/openerp_website/static/src/img/assets/png/odoo_logo.png?a=b
     keywords:
     - odoo
@@ -43,4 +43,4 @@ entries:
     urls:
     - odoo-doodba-1.0.0.tgz
     version: 1.0.0
-generated: 2018-12-02T17:47:20.464303307+01:00
+generated: 2018-12-02T23:25:52.326964191+01:00
