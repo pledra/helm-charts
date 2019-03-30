@@ -1,7 +1,7 @@
 apiVersion: v1
 entries:
   gitlab:
-  - created: 2019-03-30T14:15:51.459743428+01:00
+  - created: 2019-03-30T14:32:03.019133566+01:00
     description: GitLab Community Edition
     digest: 809b247c15a094c329edd7ffea902f309d6011b9049177db5b501c7d44d8a207
     home: https://about.gitlab.com
@@ -26,9 +26,9 @@ entries:
   odoo-doodba:
   - apiVersion: v1
     appVersion: 1.1.1
-    created: 2019-03-30T14:15:51.461393046+01:00
+    created: 2019-03-30T14:32:03.019798394+01:00
     description: Odoo chart for Kubernetes using Tecnativa's Docker odoo base (Doodba)
-    digest: a33cf5a15362d8b3e01e068823b3e0891dd13befb7660c42b110c58a45e04992
+    digest: f4a60c778581e80e45f7d252bd3511fe44dba1c99ab13ecea2a8d1524f00f684
     icon: https://odoocdn.com/openerp_website/static/src/img/assets/png/odoo_logo.png?a=b
     keywords:
     - odoo
@@ -43,23 +43,4 @@ entries:
     urls:
     - odoo-doodba-1.1.1.tgz
     version: 1.1.1
-  - apiVersion: v1
-    appVersion: 1.1.0
-    created: 2019-03-30T14:15:51.460399451+01:00
-    description: Odoo chart for Kubernetes using Tecnativa's Docker odoo base (Doodba)
-    digest: 53dc4ef1108467a0a0eef3b72c513531da6b9226e30d8f2a3da4bf7d3bab04c9
-    icon: https://odoocdn.com/openerp_website/static/src/img/assets/png/odoo_logo.png?a=b
-    keywords:
-    - odoo
-    - doodba
-    maintainers:
-    - email: pca@pledra.com
-      name: Paul Catinean
-      url: http://pledra.com
-    name: odoo-doodba
-    sources:
-    - https://gitlab.pledra.com/pledra/pledra-helm-charts/tree/master/charts/odoo-doodba
-    urls:
-    - odoo-doodba-1.1.0.tgz
-    version: 1.1.0
-generated: 2019-03-30T14:15:51.45758893+01:00
+generated: 2019-03-30T14:32:03.017005989+01:00

@@ -31,13 +31,13 @@ spec:
           mountPath: /filestore
     {{ end }}
       containers:
+      {{ if .Values.image.pullSecrets }}
+      imagePullSecrets:
+      - name: {{ .Values.image.pullSecrets }}
+      {{ end }}
       - name: server
         image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
         imagePullPolicy: {{ .Values.image.pullPolicy }}
-        {{ if .Values.image.pullSecrets }}
-        imagePullSecrets:
-        - name: {{ .Values.image.pullSecrets }}
-        {{ end }}
         ports:
         - containerPort: {{ .Values.port }}
         resources:
