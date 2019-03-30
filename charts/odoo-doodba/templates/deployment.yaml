@@ -31,10 +31,6 @@ spec:
           mountPath: /filestore
     {{ end }}
       containers:
-      {{ if .Values.image.pullSecrets }}
-      imagePullSecrets:
-      - name: {{ .Values.image.pullSecrets }}
-      {{ end }}
       - name: server
         image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
         imagePullPolicy: {{ .Values.image.pullPolicy }}
@@ -71,6 +67,10 @@ spec:
               {{ .Release.Name }}-postgresql
             {{- end }}
         tty: true
+      {{ if .Values.image.pullSecrets }}
+      imagePullSecrets:
+      - name: {{ .Values.image.pullSecrets }}
+      {{ end }}
 {{ if .Values.persistence.enabled }}
         volumeMounts:
         - name: filestore
