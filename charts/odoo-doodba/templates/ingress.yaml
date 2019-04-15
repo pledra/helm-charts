@@ -14,6 +14,17 @@ metadata:
     {{ if .Values.ingress.wwwRedirect }}
     nginx.ingress.kubernetes.io/from-to-www-redirect: "true"
     {{ end }}
+    {{ if .Values.ingress.recommendedNginxSettings }}
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "15"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "1500"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "1500"
+    nginx.ingress.kubernetes.io/hsts-include-subdomains: "false"
+    nginx.ingress.kubernetes.io/body-size: "64m"
+    nginx.ingress.kubernetes.io/server-name-hash-bucket-size: "256"
+    nginx.ingress.kubernetes.io/use-gzip: "true"
+    nginx.ingress.kubernetes.io/gzip-types: "text/css text/less text/plain text/xml application/xml application/json application/javascript"
+    nginx.ingress.kubernetes.io/proxy-body-size: "2000m"
+    {{ end }}
 
 spec:
   tls:

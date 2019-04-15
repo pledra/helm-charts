@@ -1,34 +1,11 @@
 apiVersion: v1
 entries:
-  gitlab:
-  - created: 2019-03-30T14:34:41.397753646+01:00
-    description: GitLab Community Edition
-    digest: 809b247c15a094c329edd7ffea902f309d6011b9049177db5b501c7d44d8a207
-    home: https://about.gitlab.com
-    icon: https://gitlab.com/uploads/group/avatar/6543/gitlab-logo-square.png
-    keywords:
-    - git
-    - ci
-    - deploy
-    - issue tracker
-    - code review
-    - wiki
-    maintainers:
-    - email: ipaq.lw@gmail.com
-      name: Sergey Nuzhdin
-    name: gitlab
-    sources:
-    - https://hub.docker.com/r/sameersbn/gitlab
-    - https://github.com/sameersbn/docker-gitlab
-    urls:
-    - gitlab-0.2.8.tgz
-    version: 0.2.8
   odoo-doodba:
   - apiVersion: v1
-    appVersion: 1.1.1
-    created: 2019-03-30T14:34:41.39858785+01:00
+    appVersion: 1.1.2
+    created: 2019-04-15T20:42:48.605712839+02:00
     description: Odoo chart for Kubernetes using Tecnativa's Docker odoo base (Doodba)
-    digest: d649369634905e3f209c27de4f889dd2d8e78fd73cba0e56420bdcc7704a9811
+    digest: a4af3a854f64b2f6b56e80c2ee3e3f0ff061f70c775180eae20c0fc42036a990
     icon: https://odoocdn.com/openerp_website/static/src/img/assets/png/odoo_logo.png?a=b
     keywords:
     - odoo
@@ -41,6 +18,6 @@ entries:
     sources:
     - https://gitlab.pledra.com/pledra/pledra-helm-charts/tree/master/charts/odoo-doodba
     urls:
-    - odoo-doodba-1.1.1.tgz
-    version: 1.1.1
-generated: 2019-03-30T14:34:41.395741929+01:00
+    - odoo-doodba-1.1.2.tgz
+    version: 1.1.2
+generated: 2019-04-15T20:42:48.605033733+02:00

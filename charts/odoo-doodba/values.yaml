@@ -16,6 +16,7 @@ ingress:
   enabled: true
   domain: prod-domain
   wwwRedirect: false
+  recommendedNginxSettings: true
   # redirectFrom:
   #   - www.prod-domain.com
   #   - subdomain.prod-domain.com
