@@ -37,7 +37,7 @@ spec:
         ports:
         - containerPort: {{ .Values.port }}
         resources:
-          {{- toYaml .Values.resources | nindent 12 }}
+{{ toYaml .Values.resources | indent 10 }}
         envFrom:
           - configMapRef:
               name: {{ .Release.Name }}-conf
