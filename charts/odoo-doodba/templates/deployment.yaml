@@ -9,7 +9,6 @@ metadata:
     type: server
 spec:
   replicas: {{ .Values.replicaCount }}
-  serviceName: {{ .Release.Name }}-odoo-server
   template:
     metadata:
       labels:
@@ -24,8 +23,9 @@ spec:
         image: busybox
         command: ['sh', '-c', 'chown 1000:1000 -R /filestore;']
         resources:
-          cpu: "50m"
-          memory: "100Mi"
+          requests:
+            cpu: "50m"
+            memory: "100Mi"
         volumeMounts:
         - name: filestore
           mountPath: /filestore
