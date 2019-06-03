@@ -67,15 +67,15 @@ spec:
               {{ .Release.Name }}-postgresql
             {{- end }}
         tty: true
-      {{ if .Values.image.pullSecrets }}
-      imagePullSecrets:
-        - {{ .Values.image.pullSecrets }}
-      {{ end }}
 {{ if .Values.persistence.enabled }}
         volumeMounts:
         - name: filestore
           mountPath: {{ .Values.persistence.mountPath }}
 {{ end }}
+      {{ if .Values.image.pullSecrets }}
+      imagePullSecrets:
+        - name: {{ .Values.image.pullSecrets }}
+      {{ end }}
 {{ if not .Values.postgresql.clusterDeployment }}
       - name: cloudsql-proxy
         image: gcr.io/cloudsql-docker/gce-proxy:1.11
