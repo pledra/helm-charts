@@ -69,7 +69,7 @@ spec:
         tty: true
       {{ if .Values.image.pullSecrets }}
       imagePullSecrets:
-      - name: {{ .Values.image.pullSecrets }}
+        - {{ .Values.image.pullSecrets }}
       {{ end }}
 {{ if .Values.persistence.enabled }}
         volumeMounts:
