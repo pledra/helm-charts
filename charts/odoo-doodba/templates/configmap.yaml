@@ -9,16 +9,8 @@ data:
 {{- if .Values.config }}
 {{ toYaml .Values.config | indent 2 }}
 {{- end }}
-{{ if .Values.smtp.enabled }}
 ----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: {{ .Release.Name }}-settings
-data:
-  DOMAIN_PROD: foo
-  DOMAIN_TEST: bar
----
+{{ if .Values.smtp.enabled }}
 apiVersion: v1
 kind: ConfigMap
 metadata:
