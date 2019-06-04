@@ -9,7 +9,7 @@ data:
 {{- if .Values.config }}
 {{ toYaml .Values.config | indent 2 }}
 {{- end }}
-----
+---
 {{ if .Values.smtp.enabled }}
 apiVersion: v1
 kind: ConfigMap
