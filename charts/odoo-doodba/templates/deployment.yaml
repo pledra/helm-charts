@@ -100,9 +100,9 @@ spec:
         persistentVolumeClaim:
           claimName: {{ .Release.Name }}-filestore
 {{ end }}
-{{ if .Values.nodePool }}
+{{ if .Values.nodeSelector }}
       nodeSelector:
-        cloud.google.com/gke-nodepool: {{ .Values.nodePool }}
+{{ toYaml .Values.master.nodeSelector | indent 8 }}
 {{ end }}
 ---
 {{ if .Values.smtp.enabled }}
