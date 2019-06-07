@@ -102,7 +102,7 @@ spec:
 {{ end }}
 {{ if .Values.nodeSelector }}
       nodeSelector:
-{{ toYaml .Values.master.nodeSelector | indent 8 }}
+{{ toYaml .Values.nodeSelector | indent 8 }}
 {{ end }}
 ---
 {{ if .Values.smtp.enabled }}
