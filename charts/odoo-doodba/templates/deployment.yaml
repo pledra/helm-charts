@@ -79,7 +79,6 @@ spec:
           mountPath: {{ .Values.persistence.runbotMountPath }}
 {{ end }}
 {{ end }}
-        -
       {{ if .Values.image.pullSecrets }}
       imagePullSecrets:
         - name: {{ .Values.image.pullSecrets }}
