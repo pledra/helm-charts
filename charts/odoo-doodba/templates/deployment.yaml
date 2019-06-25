@@ -75,7 +75,7 @@ spec:
         - name: filestore
           mountPath: {{ .Values.persistence.mountPath }}
 {{ if .Values.persistence.runbotMountPath }}
-        - name: runbot-builds
+        - name: runbot-data
           mountPath: {{ .Values.persistence.runbotMountPath }}
 {{ end }}
 {{ end }}
@@ -108,9 +108,9 @@ spec:
         persistentVolumeClaim:
           claimName: {{ .Release.Name }}-filestore
   {{ if .Values.persistence.runbotMountPath }}
-      - name: runbot-builds
+      - name: runbot-data
         persistentVolumeClaim:
-          claimName: {{ .Release.Name }}-runbot-builds
+          claimName: {{ .Release.Name }}-runbot-data
   {{ end }}
 {{ end }}
 {{ if .Values.nodeSelector }}
