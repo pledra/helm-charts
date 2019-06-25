@@ -67,6 +67,8 @@ persistence:
     "helm.sh/resource-policy": "keep"
   }
 
+  # runbotMountPath: /opt/odoo/runbot
+
 resources: 
   #limits:
   #  cpu: 1

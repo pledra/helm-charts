@@ -74,7 +74,12 @@ spec:
         volumeMounts:
         - name: filestore
           mountPath: {{ .Values.persistence.mountPath }}
+    {{ if .Values.persistence.runbotMountPath }}
+        - name: runbot-builds
+          mountPath: {{ .Values.runbotMountPath }}
+    {{ end }}
 {{ end }}
+        -
       {{ if .Values.image.pullSecrets }}
       imagePullSecrets:
         - name: {{ .Values.image.pullSecrets }}
@@ -102,6 +107,11 @@ spec:
       - name: filestore
         persistentVolumeClaim:
           claimName: {{ .Release.Name }}-filestore
+  {{ if .Values.persistence.runbotMountPath }}
+      - name: runbot-builds
+        persistentVolumeClaim:
+          claimName: {{ .Release.Name }}-runbot-builds
+  {{ end }}
 {{ end }}
 {{ if .Values.nodeSelector }}
       nodeSelector:
