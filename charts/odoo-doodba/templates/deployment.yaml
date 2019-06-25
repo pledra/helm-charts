@@ -17,6 +17,9 @@ spec:
       annotations:
         checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
     spec:
+    {{ if .Values.serviceAccount.name }}
+      serviceAccountName: {{ .Values.serviceAccount.name }}
+    {{ end }}
     {{ if .Values.persistence.enabled }}
       initContainers:
       - name: volume-hack
@@ -29,9 +32,6 @@ spec:
         volumeMounts:
         - name: filestore
           mountPath: /filestore
-    {{ end }}
-    {{ if .Values.serviceAccount.name }}
-      serviceAccountName: {{ .Values.serviceAccount.name }}
     {{ end }}
       containers:
       - name: server
