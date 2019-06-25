@@ -74,10 +74,10 @@ spec:
         volumeMounts:
         - name: filestore
           mountPath: {{ .Values.persistence.mountPath }}
-    {{ if .Values.persistence.runbotMountPath }}
+{{ if .Values.persistence.runbotMountPath }}
         - name: runbot-builds
-          mountPath: {{ .Values.runbotMountPath }}
-    {{ end }}
+          mountPath: {{ .Values.persistence.runbotMountPath }}
+{{ end }}
 {{ end }}
         -
       {{ if .Values.image.pullSecrets }}
