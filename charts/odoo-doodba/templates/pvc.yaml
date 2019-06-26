@@ -1,4 +1,5 @@
 {{- if and .Values.persistence.enabled .Values.persistence.createPvc }}
+
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
@@ -28,4 +29,38 @@ spec:
   storageClassName: "{{ .Values.persistence.storageClass }}"
 {{- end }}
 {{- end }}
+
+---
+
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: {{ .Release.Name }}-runbot-data
+  labels:
+    app: {{ template "odoo-doodba.fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+{{- if .Values.persistence.annotations }}
+  annotations:
+{{ toYaml .Values.persistence.annotations | indent 4 }}
+{{- end }}
+spec:
+  accessModes:
+    - {{ .Values.persistence.accessMode | quote }}
+{{ if eq .Values.persistence.storageClass "ssd" }}
+  storageClassName: ssd
+{{ end }}
+  resources:
+    requests:
+      storage: {{ .Values.persistence.runbot.size | quote }}
+{{- if .Values.persistence.storageClass }}
+{{- if (eq "-" .Values.persistence.storageClass) }}
+  storageClassName: ""
+{{- else }}
+  storageClassName: "{{ .Values.persistence.storageClass }}"
+{{- end }}
+{{- end }}
+
 {{- end -}}
+
