@@ -23,6 +23,7 @@ ingress:
   # redirectFrom:
   #   - www.prod-domain.com
   #   - subdomain.prod-domain.com
+  # secretName: tls-secret
 
 https:
   enabled: true
