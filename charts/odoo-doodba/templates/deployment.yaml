@@ -17,7 +17,7 @@ spec:
       annotations:
         checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
     spec:
-    {{ if .Values.serviceAccount.name }}
+    {{ if .Values.serviceAccount.enabled }}
       serviceAccountName: {{ .Values.serviceAccount.name }}
     {{ end }}
     {{ if .Values.persistence.enabled }}

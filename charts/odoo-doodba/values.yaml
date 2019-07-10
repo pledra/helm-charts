@@ -7,8 +7,9 @@ replicaCount: 1
 # Specify nodepool other than default for odoo server
 # nodePool: odoo-server
 #
-# serviceAccount:
-#   name: foo
+serviceAccount:
+  enabled: false
+  name: foo
 
 image:
   repository: gcr.io/pledra-1/odoo
