@@ -68,9 +68,10 @@ persistence:
     "helm.sh/resource-policy": "keep"
   }
 
-  #runbot:
-  #  mountPath: /opt/odoo/runbot
-  #  size: 10Gi
+  runbot:
+    enabled: false
+    mountPath: /opt/odoo/runbot
+    size: 10Gi
 
 resources: 
   #limits:
