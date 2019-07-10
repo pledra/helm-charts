@@ -30,8 +30,8 @@ spec:
 {{- end }}
 {{- end }}
 
+{{ if .Values.persistence.runbot.enabled }}
 ---
-
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
@@ -61,6 +61,8 @@ spec:
   storageClassName: "{{ .Values.persistence.storageClass }}"
 {{- end }}
 {{- end }}
+
+{{ end }}
 
 {{- end -}}
 
