@@ -106,7 +106,7 @@ spec:
       - name: filestore
         persistentVolumeClaim:
           claimName: {{ .Release.Name }}-filestore
-  {{ if .Values.persistence.runbot.mountPath }}
+  {{ if .Values.persistence.runbot.enabled }}
       - name: runbot-data
         persistentVolumeClaim:
           claimName: {{ .Release.Name }}-runbot-data
