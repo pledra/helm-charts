@@ -74,9 +74,9 @@ spec:
         volumeMounts:
         - name: filestore
           mountPath: {{ .Values.persistence.mountPath }}
-{{ if .Values.persistence.runbot.mountPath }}
+{{ if .Values.persistence.runbot.enabled }}
         - name: runbot-data
-          mountPath: {{ .Values.persistence.runbot.mountPath }}
+          mountPath: {{ .Values.persistence.runbot.mountPath | default '/opt/odoo/runbot' | quote }}
 {{ end }}
 {{ end }}
       {{ if .Values.image.pullSecrets }}
