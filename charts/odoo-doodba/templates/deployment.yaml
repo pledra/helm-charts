@@ -75,9 +75,9 @@ spec:
             command:
               - psql
               - odoo
-            initialDelaySeconds: 10
-            periodSeconds: 10
-            failureThreshold: 20
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          failureThreshold: 20
 {{ if .Values.persistence.enabled }}
         volumeMounts:
         - name: filestore
