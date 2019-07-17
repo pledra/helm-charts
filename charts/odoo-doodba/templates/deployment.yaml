@@ -77,7 +77,7 @@ spec:
               - odoo
           initialDelaySeconds: 10
           periodSeconds: 10
-          failureThreshold: 20
+          failureThreshold: 30
 {{ if .Values.persistence.enabled }}
         volumeMounts:
         - name: filestore
