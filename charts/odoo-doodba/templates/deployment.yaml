@@ -70,6 +70,14 @@ spec:
               {{ .Release.Name }}-postgresql
             {{- end }}
         tty: true
+        readinessProbe:
+          exec:
+            command:
+              - psql
+              - odoo
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            failureThreshold: 20
 {{ if .Values.persistence.enabled }}
         volumeMounts:
         - name: filestore
