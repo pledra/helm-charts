@@ -73,8 +73,7 @@ spec:
         readinessProbe:
           exec:
             command:
-              - psql
-              - odoo
+              - pg_isready
           initialDelaySeconds: 10
           periodSeconds: 10
           failureThreshold: 30
