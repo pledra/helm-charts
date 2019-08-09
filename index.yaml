@@ -3,9 +3,9 @@ entries:
   odoo-doodba:
   - apiVersion: v1
     appVersion: 1.1.9
-    created: "2019-07-24T10:51:29.821653938+02:00"
+    created: "2019-08-09T17:12:55.415641816+03:00"
     description: Odoo chart for Kubernetes using Tecnativa's Docker odoo base (Doodba)
-    digest: c864cb42898e2a0d5b51dd63b3d143e45dbd4886501aff71aeb292982b1c35ad
+    digest: 79d58bbdef231e0aac0193511f261123a61d933ac76bace954dd7bc96179c89d
     icon: https://odoocdn.com/openerp_website/static/src/img/assets/png/odoo_logo.png?a=b
     keywords:
     - odoo
@@ -20,4 +20,4 @@ entries:
     urls:
     - odoo-doodba-1.1.9.tgz
     version: 1.1.9
-generated: "2019-07-24T10:51:29.820741856+02:00"
+generated: "2019-08-09T17:12:55.386112715+03:00"
