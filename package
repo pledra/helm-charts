@@ -1,4 +1,0 @@
-#!/bin/bash
-
-helm package charts/odoo-doodba
-helm repo index .
