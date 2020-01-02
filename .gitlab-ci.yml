@@ -10,7 +10,7 @@ Lint:
   stage: test
   script:
     - helm lint charts/*
-    - helm lint charts/*/charts/*
+#    - helm lint charts/*/charts/*
 
 Build:
   image:
