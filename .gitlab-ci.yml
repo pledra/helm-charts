@@ -21,6 +21,7 @@ Build:
     - mkdir -p ./public
     - helm package charts/* --destination ./public
     - helm repo index --url https://charts.pledra.com .
+    - helm dependency update
     - mv index.yaml ./public
   artifacts:
      paths:
