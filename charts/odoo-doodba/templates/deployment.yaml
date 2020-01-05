@@ -166,7 +166,7 @@ spec:
               name: {{ .Release.Name }}-smtp-relay
               key: MAIL_DEFAULT_RELAY_HOST
         - name: DMS_DEBUG
-          value: "0"
+          value: "1"
         - name: ENABLE_SRS
           value: "1"
         - name: ONE_DIR
