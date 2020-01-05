@@ -166,7 +166,9 @@ spec:
               name: {{ .Release.Name }}-smtp-relay
               key: MAIL_DEFAULT_RELAY_HOST
         - name: DMS_DEBUG
-          value: {{ .Values.smtp.debug | quote}}
+          value: {{ .Values.smtp.debug | quote }}
+        - name: PERMIT_DOCKER
+          value: connected-networks
         - name: ENABLE_SRS
           value: "1"
         - name: ONE_DIR
@@ -176,7 +178,7 @@ spec:
         - name: SMTP_ONLY
           value: "1"
         - name: SRS_SENDER_CLASSES
-          value: 'envelope_sender,header_sender'
+          value: envelope_sender,header_sender
         - name: MAILNAME
           valueFrom:
             configMapKeyRef:
