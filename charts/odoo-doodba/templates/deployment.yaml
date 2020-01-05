@@ -166,15 +166,15 @@ spec:
               name: {{ .Release.Name }}-smtp-relay
               key: MAIL_DEFAULT_RELAY_HOST
         - name: DMS_DEBUG
-          value: 0
+          value: "0"
         - name: ENABLE_SRS
-          value: 1
+          value: "1"
         - name: ONE_DIR
-          value: 1
+          value: "1"
         - name: POSTFIX_MESSAGE_SIZE_LIMIT
-          value: 52428800 # 50 MiB
+          value: "52428800" # 50 MiB
         - name: SMTP_ONLY
-          value: 1
+          value: "1"
         - name: SRS_SENDER_CLASSES
           value: 'envelope_sender,header_sender'
         - name: MAILNAME
