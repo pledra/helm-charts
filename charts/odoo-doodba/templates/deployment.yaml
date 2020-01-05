@@ -171,6 +171,8 @@ spec:
           value: network
         - name: ENABLE_SRS
           value: "1"
+        - name: ENABLE_SASLAUTHD
+          value: {{ .Values.smtp.sasl_auth | quote }}
         - name: ONE_DIR
           value: "1"
         - name: POSTFIX_MESSAGE_SIZE_LIMIT
