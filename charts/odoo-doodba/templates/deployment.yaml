@@ -212,4 +212,7 @@ spec:
             configMapKeyRef:
               name: {{ .Release.Name }}-smtp-relay
               key: MAIL_NON_CANONICAL_DEFAULT
+        - name: OVERRIDE_HOSTNAME
+          value: {{ .Release.Name }}
+
 {{ end }}
