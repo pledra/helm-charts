@@ -156,41 +156,58 @@ spec:
         type: smtp-relay
     spec:
       containers:
-      - image: pcatinean/postfix-relay
+      - image: tvial/docker-mailserver:latest
         imagePullPolicy: Always
         name: {{ .Release.Name }}-smtp
         env:
+        - name: DEFAULT_RELAY_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: {{ .Release.Name }}-smtp-relay
+              key: MAIL_DEFAULT_RELAY_HOST
+        - name: DMS_DEBUG
+          value: 0
+        - name: ENABLE_SRS
+          value: 1
+        - name: ONE_DIR
+          value: 1
+        - name: POSTFIX_MESSAGE_SIZE_LIMIT
+          value: 52428800 # 50 MiB
+        - name: SMTP_ONLY
+          value: 1
+        - name: SRS_SENDER_CLASSES
+          value: 'envelope_sender,header_sender'
         - name: MAILNAME
           valueFrom:
             configMapKeyRef:
               name: {{ .Release.Name }}-smtp-relay
               key: MAILNAME
-        - name: MAIL_RELAY_HOST
+        - name: RELAY_HOST
           valueFrom:
             configMapKeyRef:
               name: {{ .Release.Name }}-smtp-relay
               key: MAIL_RELAY_HOST
-        - name: MAIL_RELAY_PORT
+        - name: RELAY_PORT
           valueFrom:
             configMapKeyRef:
               name: {{ .Release.Name }}-smtp-relay
               key: MAIL_RELAY_PORT
-        - name: MAIL_RELAY_USER
+        - name: RELAY_USER
           valueFrom:
             configMapKeyRef:
               name: {{ .Release.Name }}-smtp-relay
               key: MAIL_RELAY_USER
-        - name: MAIL_RELAY_PASS
+        - name: RELAY_PASSWORD
           valueFrom:
             configMapKeyRef:
               name: {{ .Release.Name }}-smtp-relay
               key: MAIL_RELAY_PASS
-        - name: MAIL_CANONICAL_DOMAINS
+        - name: SRS_EXCLUDE_DOMAINS
           valueFrom:
             configMapKeyRef:
               name: {{ .Release.Name }}-smtp-relay
               key: MAIL_CANONICAL_DOMAINS
-        - name: MAIL_NON_CANONICAL_DEFAULT
+        - name: SRS_DOMAINNAME
           valueFrom:
             configMapKeyRef:
               name: {{ .Release.Name }}-smtp-relay

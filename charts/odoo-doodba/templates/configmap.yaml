@@ -17,6 +17,7 @@ metadata:
   name: {{ .Release.Name }}-smtp-relay
 data:
   MAILNAME: {{ .Values.smtp.mailName }}
+  MAIL_DEFAULT_RELAY_HOST: "[{{ .Values.smtp.relayHost }}]:{{ .Values.smtp.relayPort }}"
   MAIL_RELAY_HOST: {{ .Values.smtp.relayHost }}
   MAIL_RELAY_PORT: {{ .Values.smtp.relayPort | quote }}
   MAIL_RELAY_USER: {{ .Values.smtp.relayUser }}
