@@ -36,4 +36,4 @@ Deploy:
     # Authenticate to gain access to gcloud services for this project
     - gcloud auth activate-service-account --key-file=/service_account.json --project=pledra-1
     # Upload packaged chart to bucket
-    - gsutil cp -r ./public/* gs://pledra-charts 
+    - gsutil cp -m -r ./public/ gs://pledra-charts 
