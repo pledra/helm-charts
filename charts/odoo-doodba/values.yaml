@@ -99,5 +99,5 @@ smtp:
   relayPass: "password"
   canonicalDomains: "prod-domain"
   nonCanonicalDefault: "prod-domain"
-  debug: false
+  debug: 0
 
