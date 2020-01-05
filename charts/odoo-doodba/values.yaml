@@ -94,9 +94,10 @@ smtp:
   enabled: true
   mailName: "Smtp"
   relayHost: "smtp.gmail.com"
-  relayPort: "587"
+  relayPort: "465"
   relayUser: "email"
   relayPass: "password"
   canonicalDomains: "prod-domain"
   nonCanonicalDefault: "prod-domain"
+  debug: "0"
 
