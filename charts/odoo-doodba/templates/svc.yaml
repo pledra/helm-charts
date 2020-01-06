@@ -32,6 +32,12 @@ spec:
   - port: 25
     targetPort: 25
     protocol: TCP
+  - port: 465
+    targetPort: 465
+    protocol: TCP
+  - port: 587
+    targetPort: 587
+    protocol: TCP
   selector:
     app: {{ template "odoo-doodba.fullname" . }}
     type: smtp-relay
