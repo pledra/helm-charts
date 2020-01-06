@@ -30,12 +30,15 @@ metadata:
 spec:
   ports:
   - port: 25
+    name: "25-smtp"
     targetPort: 25
     protocol: TCP
   - port: 465
+    name: "465-smtps"
     targetPort: 465
     protocol: TCP
   - port: 587
+    name: "587-submission"
     targetPort: 587
     protocol: TCP
   selector:
