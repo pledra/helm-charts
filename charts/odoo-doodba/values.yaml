@@ -100,5 +100,5 @@ smtp:
   canonicalDomains: "prod-domain"
   nonCanonicalDefault: "prod-domain"
   debug: 0
-  sasl_auth: 1
+  sasl_auth: 0
 
