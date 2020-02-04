@@ -46,12 +46,12 @@ ingress:
   hosts:
     - host: etherpad.pledra.com
       paths: []
-  tls: []
+  tls:
     - secretName: etherpad-tls
       hosts:
         - etherpad.pledra.com
 
-resources: {}
+resources:
   limits:
     cpu: 100m
     memory: 128Mi
