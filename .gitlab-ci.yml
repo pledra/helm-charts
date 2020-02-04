@@ -19,7 +19,7 @@ Build:
   stage: build
   script:
     - mkdir -p ./public
-    - helm dependency update charts/*
+    - for chart in charts/*; do helm dependency update $chart; done
     - helm package charts/* --destination ./public
     - helm repo index --url https://charts.pledra.com .
     - mv index.yaml ./public
