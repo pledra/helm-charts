@@ -20,6 +20,9 @@ serviceAccount:
   # If not set and create is true, a name is generated using the fullname template
   name:
 
+etherpad:
+  env: production
+
 podSecurityContext: {}
   # fsGroup: 2000
 
@@ -45,7 +48,8 @@ ingress:
 
   hosts:
     - host: etherpad.pledra.com
-      paths: []
+      paths:
+        - /
   tls:
     - secretName: etherpad-tls
       hosts:
