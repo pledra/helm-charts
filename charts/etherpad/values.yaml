@@ -56,10 +56,10 @@ ingress:
         - etherpad.pledra.com
 
 resources:
-  limits:
+  requests:
     cpu: 100m
     memory: 128Mi
-  requests:
+  limits:
     cpu: 200m
     memory: 512Mi
 
