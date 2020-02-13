@@ -75,12 +75,12 @@ persistence:
     size: 10Gi
 
 resources: 
-  #limits:
-  #  cpu: 1
-  #  memory: 128Mi
-  #requests:
-  #  cpu: 100m
-  #  memory: 128Mi
+  requests:
+   cpu: 500m
+   memory: 1Gi
+  limits:
+   cpu: 1
+   memory: 2Gi
 
 postgresql:
   clusterDeployment: true
